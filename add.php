@@ -10,10 +10,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("sss", $title, $author, $genre);
 
     if ($stmt->execute()) {
-        echo "New manga added successfully!";
+        echo "<script>alert('Manga Created successfully!'); window.location.href='index.php';</script>";
     } else {
         echo "Error: " . $stmt->error;
     }
+    
 
     $stmt->close();
     $conn->close();
@@ -24,18 +25,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add Manga</title>
+    <title>Add Manga</title> 
+    <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-    <h1>Add New Manga</h1>
-    <form method="POST" action="add.php">
-        <label for="title">Title:</label>
-        <input type="text" name="title" required><br>
-        <label for="author">Author:</label>
-        <input type="text" name="author"><br>
-        <label for="genre">Genre:</label>
-        <input type="text" name="genre"><br>
-        <button type="submit">Add Manga</button>
-    </form>
+    <div>
+        <h1>Add New Manga</h1> 
+    </div>
+    <div>
+        <form id="from" method="POST" action="add.php">
+            <label for="title">Title:</label>
+            <input type="text" name="title" required><br>
+            <label for="author">Author:</label>
+            <input type="text" name="author"><br>
+            <label for="genre">Genre:</label>
+            <input type="text" name="genre"><br>
+            <button type="submit">Add Manga</button>
+        </form>
+    </div>
 </body>
 </html>

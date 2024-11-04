@@ -10,11 +10,11 @@ $result = $conn->query($sql);
 <head>
     <meta charset="UTF-8">
     <title>Manga List</title>
+    <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-    <h1>Manga List</h1>
-    <a href="add.php">Add New Manga</a>
-    <table style="border: 1px solid black;">
+    <h1>Manga List</h1> <br>
+    <table id="Tab" style="border: 1px solid black;">
         <tr>
             <th>Title</th>
             <th>Author</th>
@@ -30,7 +30,8 @@ $result = $conn->query($sql);
                 echo "<td>" . $row['genre'] . "</td>";
                 echo "<td>";
                 echo "<a href='edit.php?id=" . $row['id'] . "'>Edit</a> | ";
-                echo "<a href='delete.php?id=" . $row['id'] . "'>Delete</a>";
+                echo "<a href='delete.php?id=" . $row['id'] . "' onclick='return confirm(\"Are you sure you want to delete this manga?\");'>Delete</a>";
+
                 echo "</td>";
                 echo "</tr>";
             }
@@ -38,6 +39,11 @@ $result = $conn->query($sql);
             echo "<tr><td colspan='4'>No manga found</td></tr>";
         }
         ?>
+        <tr>
+        <td colspan="4" id="newRow">
+            <a id="New" href="add.php">Add New Manga (+)</a>
+        </td>
+        </tr>
     </table>
 </body>
 </html>
